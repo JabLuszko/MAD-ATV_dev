@@ -12,6 +12,11 @@
 
 pdconf="/data/data/com.mad.pogodroid/shared_prefs/com.mad.pogodroid_preferences.xml"
 
+log() {
+    line="`date +'[%Y-%m-%dT%H:%M:%S %Z]'` $@"
+    echo "$line"
+}
+
 case "$(uname -m)" in
  aarch64) arch="arm64_v8a";;
  armv8l)  arch="armeabi-v7a";;
@@ -20,38 +25,50 @@ esac
 checkpdconf(){
 if ! [[ -s "$pdconf" ]] ;then
  echo "pogodroid not configured yet"
+ log "PogoDroid not configured yet $pdconf"
  return 1
 fi
 }
 
 reboot_device(){
-if [[ "$USER" == "shell" ]] ;then
+#if [[ "$USER" == "shell" ]] ;then
  echo "Rebooting Device"
+ log "Rebooting Device"
  /system/bin/reboot
-fi
+#fi
 }
 
 update_pogodroid(){
+log "Updating PogoDroid"
 echo "updating PogoDroid..."
 echo "Delete old APK PogoDroid"
 /system/bin/rm -f /sdcard/Download/PogoDroid.apk
 echo "Download APK PogoDroid"
 cd /sdcard/Download/
+log "Starting download of PogoDroid from maddev.eu"
 /system/bin/curl -L -o PogoDroid.apk -k -s https://www.maddev.eu/apk/PogoDroid.apk
+log "Done downloading of PogoDroid from maddev.eu"
 echo "Install APK PogoDroid"
+log "Trying to install PogoDroid from maddev.eu"
 /system/bin/pm install -r /sdcard/Download/PogoDroid.apk
+log "Done installing PogoDroid from maddev.eu"
 reboot=1
 }
 
 update_rgc(){
+log "Updating RGC"
 echo "updating RGC..."
 echo "Delete old APK RGC"
 /system/bin/rm -f /sdcard/Download/RemoteGpsController.apk
 echo "Download APK RGC"
 cd /sdcard/Download/
+log "Starting download of RGC from GitHub"
 /system/bin/curl -L -o RemoteGpsController.apk -k -s https://raw.githubusercontent.com/Map-A-Droid/MAD/master/APK/RemoteGpsController.apk
+log "Done downloading of RGC from GitHub"
 echo "Install APK RGC"
+log "Trying to install RGC from GitHub"
 /system/bin/pm install -r /sdcard/Download/RemoteGpsController.apk
+log "Done installing RGC from GitHub"
 reboot=1
 }
 
@@ -93,15 +110,20 @@ origin=$(awk -F'>' '/post_origin/{print $2}' "$pdconf"|awk -F'<' '{print $1}')
 newver="$(curl -s -k -L $(get_pd_user) -H "origin: $origin" "$pserver/mad_apk/rgc/noarch")"
 installedver="$(dumpsys package de.grennith.rgc.remotegpscontroller 2>/dev/null|awk -F'=' '/versionName/{print $2}'|head -n1)"
 if checkupdate "$newver" "$installedver" ;then
+ log "Updating RGC via Wizard"
  echo "updating RGC..."
  rm -f /sdcard/Download/RemoteGpsController.apk
+ log "Starting download of RGC from Wizard"
  until curl -o /sdcard/Download/RemoteGpsController.apk  -s -k -L $(get_pd_user) -H "origin: $origin" "$pserver/mad_apk/rgc/download" ;do
   rm -f /sdcard/Download/RemoteGpsController.apk
   sleep 2
  done
+ log "Done downloading of RGC from Wizard"
  if [[ "$installedver" ]] ;then
+  log "RGC already installed, just updating Wizard version via pm install"
   /system/bin/pm install -r /sdcard/Download/RemoteGpsController.apk
  else
+  log "RGC was never installed - moving it to /system/priv-app"
   mv /sdcard/Download/RemoteGpsController.apk /system/priv-app/RemoteGpsController.apk
   /system/bin/chmod 644 /system/priv-app/RemoteGpsController.apk
   /system/bin/chown root:root /system/priv-app/RemoteGpsController.apk
@@ -119,13 +141,17 @@ origin=$(awk -F'>' '/post_origin/{print $2}' "$pdconf"|awk -F'<' '{print $1}')
 newver="$(curl -s -k -L $(get_pd_user) -H "origin: $origin" "$pserver/mad_apk/pogodroid/noarch")"
 installedver="$(dumpsys package com.mad.pogodroid|awk -F'=' '/versionName/{print $2}'|head -n1)"
 if checkupdate "$newver" "$installedver" ;then
+ log "Updating PogoDroid from Wizard"
  echo "updating pogodroid..."
  rm -f /sdcard/Download/PogoDroid.apk
+ log "Starting download of PD from Wizard"
  until curl -o /sdcard/Download/PogoDroid.apk -s -k -L $(get_pd_user) -H "origin: $origin" "$pserver/mad_apk/pogodroid/download" ;do
   rm -f /sdcard/Download/PogoDroid.apk
   sleep 2
  done
+ log "Done downloading of PD from Wizard"
  /system/bin/pm install -r /sdcard/Download/PogoDroid.apk
+ log "Done installing of PD from Wizard"
 fi
 reboot=1
 }
@@ -140,32 +166,41 @@ installedver="$(dumpsys package com.nianticlabs.pokemongo|awk -F'=' '/versionNam
 [[ "$newver" == "" ]] && unset UpdatePoGo && echo "The madmin wizard has no pogo in its system apks, or your pogodroid is not configured" && return 1
 [[ "$newver" == "$installedver" ]] && unset UpdatePoGo && echo "The madmin wizard has version $newver and so do we, doing nothing." && return 0
 echo "updating PokemonGo..."
+log "Updating PokemonGO"
 mkdir -p /sdcard/Download/pogo
 /system/bin/rm -f /sdcard/Download/pogo/*
 case "$(curl -I -s -k -L $(get_pd_user) -H "origin: $origin" "$pserver/mad_apk/pogo/$arch/download"|grep -i Content-Type)" in
  *zip*) (cd /sdcard/Download/pogo
+       log "Trying to download POGO from Wizard, zip file"
        until curl -o /sdcard/Download/pogo/pogo.zip -s -k -L $(get_pd_user) -H "origin: $origin" "$pserver/mad_apk/pogo/$arch/download" && unzip pogo.zip && rm pogo.zip ;do
         echo "Download ZIP PokemonGo"
         /system/bin/rm -fr /sdcard/Download/pogo/*
         sleep 2
        done
+       log "Downloaded and unpacked zip POGO from Wizard"
        echo "Install ZIP PokemonGo"
+       log "Installing unzipped POGO split from Wizard"
        session=$(pm install-create -r | cut -d [ -f2 | cut -d ] -f1)
        for a in * ;do
         pm install-write -S $(stat -c %s $a) $session $a $a
        done
-       pm install-commit $session )
+       pm install-commit $session 
+       log "Done installing unzipped POGO split from Wizard")
  ;;
  *vnd.android.package-archive*)
+       log "Trying to download POGO from Wizard, apk file"
        until curl -o /sdcard/Download/pogo/pogo.apk -s -k -L $(get_pd_user) -H "origin: $origin" "$pserver/mad_apk/pogo/$arch/download" ;do
         echo "Download APK PokemonGo"
         /system/bin/rm -fr /sdcard/Download/pogo/*
         sleep 2
        done
+       log "Downloaded apk POGO from Wizard"
        echo "Install APK PokemonGo"
        /system/bin/pm install -r /sdcard/Download/pogo/pogo.apk
+       log "Done installing APK POGO from Wizard"
  ;;
  *)    echo "unknown format pogo detected from madmin wizard"
+       log "unknown format pogo detected from madmin wizard"
        curl -I -s -k -L $(get_pd_user) -H "origin: $origin" "$pserver/mad_apk/pogo/$arch/download"|grep -i Content-Type
        return 1
  ;;
@@ -174,8 +209,7 @@ reboot=1
 }
 
 update_init(){
- echo "uncomment for final release"
- #/system/bin/curl -o /etc/init.d/59MAD -k -s https://raw.githubusercontent.com/Map-A-Droid/MAD-ATV/master/59MAD && chmod +x /etc/init.d/59MAD
+ /system/bin/curl -o /etc/init.d/59MAD -k -s https://raw.githubusercontent.com/JabLuszko/MAD-ATV_dev/main/59MAD && chmod +x /etc/init.d/59MAD
  reboot=1
 }
 
