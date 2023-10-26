@@ -6,8 +6,11 @@ pver="2.0"
 # mad rom version
 madver="0.9"
 
-logfile="/data/local/59MAD.log"
+# Last file created by POGOROM so we don't interfere and run too early
 last_pogorom_file="/sdcard/.curlrc"
+
+logfile="/data/local/59MAD.log"
+
 rgcconf="/data/data/de.grennith.rgc.remotegpscontroller/shared_prefs/de.grennith.rgc.remotegpscontroller_preferences.xml"
 pdconf="/data/data/com.mad.pogodroid/shared_prefs/com.mad.pogodroid_preferences.xml"
 useragent='Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:53.0) Gecko/20100101 Firefox/53.0'
@@ -41,10 +44,12 @@ fi
 
 execute_autoupdates(){
 if ! grep -q "version $uver" /system/bin/update_mad_a9.sh; then
+    log "Wrong version of /system/bin/update_mad_a9.sh [looking for $uver], downloading new one"
     download https://raw.githubusercontent.com/Map-A-Droid/MAD-ATV/master/update_mad_a9.sh /system/bin/update_mad_a9.sh
     chmod +x /system/bin/update_mad_a9.sh
 fi
 if ! grep -q "version $pver" /system/bin/pingreboot.sh; then
+     log "Wrong version of /system/bin/pingreboot [looking for $pver], downloading new one"
      download https://raw.githubusercontent.com/Map-A-Droid/MAD-ATV/master/pingreboot.sh /system/bin/pingreboot.sh
      chmod +x /system/bin/pingreboot.sh
 fi
@@ -215,6 +220,7 @@ else
         log_msg 2 "Check for the need to MAC adress change completed! This may have caused an IP change. My current IP is $ip "
         log "Installing the apps from the wizard"
         if ! grep -q "version $uver" /system/bin/update_mad_a9.sh; then
+            log "Wrong version of /system/bin/update_mad_a9.sh [looking for $uver], downloading new one"
             download https://raw.githubusercontent.com/Map-A-Droid/MAD-ATV/master/update_mad_a9.sh /system/bin/update_mad_a9.sh
             chmod +x /system/bin/update_mad_a9.sh
             log_msg 2 "Installed /system/bin/update_mad_a9.sh"
