@@ -12,7 +12,7 @@ Download [01MAD.sh](https://raw.githubusercontent.com/JabLuszko/MAD-ATV_dev/main
 
 Download `mad_autoconf.txt` from MADMin -> System -> Auto-Config and put it root/main/not-in-directory.
 
-Optionally! Download [PogoDroid_async.apk](https://www.maddev.eu/apk/PogoDroid_async.apk "PogoDroid_async.apk") and [POGO (not Ares/Samsung and not Split) arm64-v8a apk](https://www.apkmirror.com/apk/niantic-inc/pokemon-go/ "POGO") into `apk` directory[2].
+Optionally! Download [PogoDroid_async.apk](https://www.maddev.eu/apk/PogoDroid_async.apk "PogoDroid_async.apk") and supported/the one you have in Wizard [POGO (not Ares/Samsung and not Split) arm64-v8a apk](https://www.apkmirror.com/apk/niantic-inc/pokemon-go/ "POGO") into `apk` directory[2].
 
 
 Flash [PoGoRom v1.4.1 A9 x64 S905W](https://github.com/ClawOfDead/ATVRoms/releases/tag/v1.4.1) like normally and before first boot put the USB thumbdrive/pendrive into the *other* USB PORT.
