@@ -16,6 +16,7 @@ Give it another 20 minutes and one or two restarts to have avatar/player moving.
 DO NOT CLICK ANYTHING ON SCREEN/DEVICE/ADB. EVEN IF YOU THINK IT'S STUCK. YES, DON'T TOUCH.
 
 [1] - other filesystems most likely works too, but not tested, just don't go something crazy like exFAT or btrfs.
+
 [2] - RGC need systemize, was too lazy to change that for first iteration so RGC will be downloaded from MAD/Auto-Config.
 
 
