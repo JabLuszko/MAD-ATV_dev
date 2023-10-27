@@ -41,8 +41,8 @@ log "chmod'ed update_mad_a9.sh"
 
 # 59MAD
 log "Downloading 59MAD"
-log "Downloaded 59MAD"
 download https://raw.githubusercontent.com/JabLuszko/MAD-ATV_dev/main/59MAD /etc/init.d/59MAD
+log "Downloaded 59MAD"
 chmod 755 /etc/init.d/59MAD
 log "chmod'ed 59MAD"
 
