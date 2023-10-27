@@ -31,11 +31,9 @@ fi
 }
 
 reboot_device(){
-#if [[ "$USER" == "shell" ]] ;then
- echo "Rebooting Device"
- log "Rebooting Device"
- /system/bin/reboot
-#fi
+echo "Rebooting Device"
+log "Rebooting Device"
+/system/bin/reboot
 }
 
 update_pogodroid(){
