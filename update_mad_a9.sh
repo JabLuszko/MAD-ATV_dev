@@ -128,8 +128,8 @@ if checkupdate "$newver" "$installedver" ;then
   /system/bin/chmod 644 /system/priv-app/RemoteGpsController.apk
   /system/bin/chown root:root /system/priv-app/RemoteGpsController.apk
  fi
+ reboot=1
 fi
-reboot=1
 }
 
 cast_imperius(){
@@ -152,8 +152,8 @@ if checkupdate "$newver" "$installedver" ;then
  log "Done downloading of PD from Wizard"
  /system/bin/pm install -r /sdcard/Download/PogoDroid.apk
  log "Done installing of PD from Wizard"
+ reboot=1
 fi
-reboot=1
 }
 
 update_pokemon(){
@@ -163,8 +163,8 @@ pserver=$(grep -v raw "$pdconf"|awk -F'>' '/post_destination/{print $2}'|awk -F'
 origin=$(awk -F'>' '/post_origin/{print $2}' "$pdconf"|awk -F'<' '{print $1}')
 newver="$(curl -s -k -L $(get_pd_user) -H "origin: $origin" "$pserver/mad_apk/pogo/$arch")"
 installedver="$(dumpsys package com.nianticlabs.pokemongo|awk -F'=' '/versionName/{print $2}')"
-[[ "$newver" == "" ]] && unset UpdatePoGo && echo "The madmin wizard has no pogo in its system apks, or your pogodroid is not configured" && return 1
-[[ "$newver" == "$installedver" ]] && unset UpdatePoGo && echo "The madmin wizard has version $newver and so do we, doing nothing." && return 0
+[[ "$newver" == "" ]] && echo "The madmin wizard has no pogo in its system apks, or your pogodroid is not configured" && return 1
+[[ "$newver" == "$installedver" ]] && echo "The madmin wizard has version $newver and so do we, doing nothing." && return 0
 echo "updating PokemonGo..."
 log "Updating PokemonGO"
 mkdir -p /sdcard/Download/pogo
