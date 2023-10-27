@@ -26,6 +26,9 @@ Give it another 20 minutes and one or two restarts to have avatar/player moving.
 DO NOT CLICK ANYTHING ON SCREEN/DEVICE/ADB. EVEN IF YOU THINK IT'S STUCK. YES, DON'T TOUCH.
 
 
+WHOLE GOOGLE ACCOUNT ROUTINE WAS STRIPPED OUT, NO GOOGLE ACCOUNTS, PTC ONLY - I don't think many people left with Google Accounts, but if anyone up for it could be extra script and/or personal_commands MADMin job?
+
+
 
 [1] - other filesystems most likely works too, but not tested, just don't go something crazy like exFAT or btrfs.
 
