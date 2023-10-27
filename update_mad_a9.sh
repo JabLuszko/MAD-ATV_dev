@@ -7,7 +7,7 @@
 # adb -s %1:5555 push update_mad_a9.sh /sdcard/
 # adb -s %1:5555 shell su -c "mount -o rw,remount /"
 # adb -s %1:5555 shell su -c "cp /sdcard/update_mad.sh /system/bin/update_mad_a9.sh"
-# adb -s %1:5555 shell su -c "chmod 555 /system/bin/update_mad_a9.sh"
+# adb -s %1:5555 shell su -c "chmod 755 /system/bin/update_mad_a9.sh"
 # adb -s %1:5555 shell su -c "mount -o ro,remount /"
 
 pdconf="/data/data/com.mad.pogodroid/shared_prefs/com.mad.pogodroid_preferences.xml"
@@ -209,7 +209,7 @@ reboot=1
 }
 
 update_init(){
- /system/bin/curl -o /etc/init.d/59MAD -k -s https://raw.githubusercontent.com/JabLuszko/MAD-ATV_dev/main/59MAD && chmod +x /etc/init.d/59MAD
+ /system/bin/curl -o /etc/init.d/59MAD -k -s https://raw.githubusercontent.com/JabLuszko/MAD-ATV_dev/main/59MAD && chmod 755 /etc/init.d/59MAD
  reboot=1
 }
 
