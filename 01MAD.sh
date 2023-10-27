@@ -50,4 +50,8 @@ log "chmod'ed 59MAD"
 #log "Remouting / as ro"
 #mount -o ro,remount /
 log "01MAD.sh exit 0"
+
+# Run 59MAD manually as copied by ROM after init run so it won't trigger the first time
+log "Trying to run 59MAD"
+sh /etc/init.d/59MAD
 exit 0
