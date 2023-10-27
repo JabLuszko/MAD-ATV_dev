@@ -46,12 +46,12 @@ execute_autoupdates(){
 if ! grep -q "version $uver" /system/bin/update_mad_a9.sh; then
     log "Wrong version of /system/bin/update_mad_a9.sh [looking for $uver], downloading new one"
     download https://raw.githubusercontent.com/JabLuszko/MAD-ATV_dev/main/update_mad_a9.sh /system/bin/update_mad_a9.sh
-    chmod +x /system/bin/update_mad_a9.sh
+    chmod 755 /system/bin/update_mad_a9.sh
 fi
 if ! grep -q "version $pver" /system/bin/pingreboot.sh; then
      log "Wrong version of /system/bin/pingreboot [looking for $pver], downloading new one"
      download https://raw.githubusercontent.com/Map-A-Droid/MAD-ATV/master/pingreboot.sh /system/bin/pingreboot.sh
-     chmod +x /system/bin/pingreboot.sh
+     chmod 755 /system/bin/pingreboot.sh
 fi
 ! [[ -f /sdcard/disableautopogoupdate ]] && sh -x /system/bin/update_mad_a9.sh -p
 ! [[ -f /sdcard/disableautopogodroidupdate ]] && sh -x /system/bin/update_mad_a9.sh -wd
@@ -222,7 +222,7 @@ else
         if ! grep -q "version $uver" /system/bin/update_mad_a9.sh; then
             log "Wrong version of /system/bin/update_mad_a9.sh [looking for $uver], downloading new one"
             download https://raw.githubusercontent.com/JabLuszko/MAD-ATV_dev/main/update_mad_a9.sh /system/bin/update_mad_a9.sh
-            chmod +x /system/bin/update_mad_a9.sh
+            chmod 755 /system/bin/update_mad_a9.sh
             log_msg 2 "Installed /system/bin/update_mad_a9.sh"
         fi
         log_msg 2 "Starting install of RGC, PoGo and PD from your madmin wizard"
