@@ -38,6 +38,9 @@ download https://raw.githubusercontent.com/JabLuszko/MAD-ATV_dev/main/update_mad
 log "Downloaded update_mad_a9.sh"
 chmod 755 /system/bin/update_mad_a9.sh
 log "chmod'ed update_mad_a9.sh"
+# symlink create update_mad.sh that all personal commands job uses
+ln -s /system/bin/update_mad_a9.sh /system/bin/update_mad.sh
+log "symlink for /system/bin/update_mad.sh created"
 
 # 59MAD
 log "Downloading 59MAD"
