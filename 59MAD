@@ -231,7 +231,12 @@ else
 fi
 mount -o remount,rw /
 
-#TOTEST settings put global private_dns_mode off
+# Disable system animations aka change time to 0.0
+[[ $(settings get global transition_animation_scale) != "0.0" ]] && settings put global transition_animation_scale 0.0
+[[ $(settings get global window_animation_scale) !=  "0.0" ]] && settings put global window_animation_scale 0.0
+[[ $(settings get global animator_duration_scale) != "0.0" ]] && settings put global animator_duration_scale 0.0
+# TODO Disable DNS over TLS, need to double check if this is working :)
+[[ $(settings get global private_dns_mode) != "off" ]] && settings put global private_dns_mode off
 [[ $(settings get global heads_up_notifications_enabled) != "0" ]] && settings put global heads_up_notifications_enabled 0
 [[ $(settings get global hdmi_control_enabled) != "0" ]] && settings put global hdmi_control_enabled 0
 [[ $(settings get global stay_on_while_plugged_in) != 3 ]] && settings put global stay_on_while_plugged_in 3
