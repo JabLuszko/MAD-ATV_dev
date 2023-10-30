@@ -12,10 +12,19 @@
 
 pdconf="/data/data/com.mad.pogodroid/shared_prefs/com.mad.pogodroid_preferences.xml"
 
-log() {
+log(){
     line="`date +'[%Y-%m-%dT%H:%M:%S %Z]'` $@"
     echo "$line"
 }
+
+remount_ro(){
+mount -o remount,ro /
+}
+
+remount_rw(){
+mount -o remount,rw /
+}
+
 
 case "$(uname -m)" in
  aarch64) arch="arm64_v8a";;
@@ -122,6 +131,8 @@ if checkupdate "$newver" "$installedver" ;then
   /system/bin/pm install -r /sdcard/Download/RemoteGpsController.apk
  else
   log "RGC was never installed - moving it to /system/priv-app"
+  # let's make sure / is mounted with rw rights, we don't bother with remount_ro as it should reboot
+  remount_rw() 
   mv /sdcard/Download/RemoteGpsController.apk /system/priv-app/RemoteGpsController.apk
   /system/bin/chmod 644 /system/priv-app/RemoteGpsController.apk
   /system/bin/chown root:root /system/priv-app/RemoteGpsController.apk
@@ -214,15 +225,15 @@ update_init(){
 update_dhcp(){
 grep -q net.hostname /system/build.prop && unset UpdateDHCP && return 1
 origin="$(awk -F'>' '/post_origin/{print $2}' /data/data/com.mad.pogodroid/shared_prefs/com.mad.pogodroid_preferences.xml|cut -d'<' -f1)"
-mount -o remount,rw /system
+remount_rw()
 if grep -q 'net.hostname' /system/build.prop ;then
  sed -i -e "s/^net.hostname=.*/net.hostname=${origin}/g" /system/build.prop
 else
  echo "net.hostname=${origin}" >> /system/build.prop
 fi
-mount -o remount,ro /system
 reboot=1
 }
+
 
 print_help(){
 cat << EOF
