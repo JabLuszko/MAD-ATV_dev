@@ -218,6 +218,7 @@ reboot=1
 }
 
 update_init(){
+ remount_rw
  /system/bin/curl -o /etc/init.d/59MAD -k -s https://raw.githubusercontent.com/JabLuszko/MAD-ATV_dev/main/59MAD && chmod 755 /etc/init.d/59MAD
  reboot=1
 }
