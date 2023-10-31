@@ -132,7 +132,7 @@ if checkupdate "$newver" "$installedver" ;then
  else
   log "RGC was never installed - moving it to /system/priv-app"
   # let's make sure / is mounted with rw rights, we don't bother with remount_ro as it should reboot
-  remount_rw() 
+  remount_rw
   mv /sdcard/Download/RemoteGpsController.apk /system/priv-app/RemoteGpsController.apk
   /system/bin/chmod 644 /system/priv-app/RemoteGpsController.apk
   /system/bin/chown root:root /system/priv-app/RemoteGpsController.apk
