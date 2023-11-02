@@ -231,6 +231,8 @@ else
 fi
 mount -o remount,rw /
 
+# Disable blue LED on supported A9 devices
+[[ -f /sdcard/disableblueled ]] && echo 0 > /sys/class/leds/sys_led/brightness
 # Disable system animations aka change time to 0.0
 [[ $(settings get global transition_animation_scale) != "0.0" ]] && settings put global transition_animation_scale 0.0
 [[ $(settings get global window_animation_scale) !=  "0.0" ]] && settings put global window_animation_scale 0.0
