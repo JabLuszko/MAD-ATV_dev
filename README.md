@@ -15,7 +15,7 @@ Download `mad_autoconf.txt` from MADMin -> System -> Auto-Config and put it root
 Optionally! Download [PogoDroid_async.apk](https://www.maddev.eu/apk/PogoDroid_async.apk "PogoDroid_async.apk") and supported/the one you have in Wizard [POGO (not Ares/Samsung and not Split) arm64-v8a apk](https://www.apkmirror.com/apk/niantic-inc/pokemon-go/ "POGO") into `apk` directory[2].
 
 
-Flash [PoGoRom v1.4.1 A9 x64 S905W](https://github.com/ClawOfDead/ATVRoms/releases/tag/v1.4.1) like normally via USB Burning Tool (do not use any extra scripts/configurations/csv's from that ATVROM) and before first boot put the USB thumbdrive/pendrive into the *other* USB PORT.
+Flash [PoGoRom v1.5 A9 x64 S905W ADBUSB](https://github.com/ClawOfDead/ATVRoms/releases/tag/v1.5) like normally via USB Burning Tool (do not use any extra scripts/configurations/csv's from that ATVROM) and before first boot put the USB thumbdrive/pendrive into the *other* USB PORT.
 
 After like 3 restarts (30 minutes or so?) you should have new device pending in `Auto-Config` - click the IP, select what already existing device you are updating and Auto-Config should take care of rest.
 
