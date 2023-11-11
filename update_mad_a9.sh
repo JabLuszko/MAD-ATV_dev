@@ -1,6 +1,6 @@
 #!/system/bin/sh
 # update mad
-# version 9.0
+# version 9.0.1
 # created by GhostTalker, hijaked by krz
 #
 # adb connect %1:5555
@@ -15,13 +15,16 @@ pdconf="/data/data/com.mad.pogodroid/shared_prefs/com.mad.pogodroid_preferences.
 log(){
     line="`date +'[%Y-%m-%dT%H:%M:%S %Z]'` $@"
     echo "$line"
+    /system/bin/log -p v -t "MAD-ATV" "$@"
 }
 
 remount_ro(){
+log "Remouting / as RO"
 mount -o remount,ro /
 }
 
 remount_rw(){
+log "Remouting / as RW"
 mount -o remount,rw /
 }
 
