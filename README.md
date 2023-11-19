@@ -6,9 +6,7 @@ Get a USB thumbdrive/pendrive, format it `FAT (Default)`[1].
 
 Create directories `magisk_modules`, `apk` and `scripts`.
 
-~~Seems like Google stepped up game for Play Integrity - for now use the different module Download [safetynet-fix-v2.4.0.zip](https://raw.githubusercontent.com/JabLuszko/MAD-ATV_dev/main/safetynet-fix-v2.4.0.zip "safetynet-fix-v2.4.0.zip") into `magisk_modules` directory.~~
-
-Download [PlayIntegrityFix_v12.2.zip](https://raw.githubusercontent.com/JabLuszko/MAD-ATV_dev/main/PlayIntegrityFix_v12.2.zip "PlayIntegrityFix_v12.2.zip") into `magisk_modules` directory.
+Download [PlayIntegrityFix_v13.zip](https://raw.githubusercontent.com/JabLuszko/MAD-ATV_dev/main/PlayIntegrityFix_v13.zip "PlayIntegrityFix_v13.zip") into `magisk_modules` directory.
 
 Download [01MAD.sh](https://raw.githubusercontent.com/JabLuszko/MAD-ATV_dev/main/01MAD.sh "01MAD.sh") into `scripts` directory.
 
