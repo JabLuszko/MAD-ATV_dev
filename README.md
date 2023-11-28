@@ -1,6 +1,8 @@
 # MAD-ATV_dev
 
-First attempt at MAD-ATV autoconfig.
+> [!WARNING]
+> Do not use Notepad, do not open those text/sh/cfg/ini files, do not copy-paste them to Wordpad, etc. 
+> Windows encoding/lines bad. Right click on those .sh and select "Save as" or just open in new window in web browser and click CTRL + S.
 
 Get a USB thumbdrive/pendrive, format it `FAT (Default)`[1].
 
