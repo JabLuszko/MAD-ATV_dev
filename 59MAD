@@ -1,6 +1,6 @@
 #!/system/bin/sh
 #This is for update_mad version
-uver="9.0.1"
+uver="9.0.2"
 #This is for pingreboot version
 pver="2.0"
 # mad rom version
