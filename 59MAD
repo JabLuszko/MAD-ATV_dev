@@ -4,7 +4,7 @@ uver="9.0.2"
 #This is for pingreboot version
 pver="2.0"
 # mad rom version
-madver="0.9.2"
+madver="0.9.3"
 
 # Last file created by POGOROM so we don't interfere and run too early
 last_pogorom_file="/sdcard/.curlrc"
