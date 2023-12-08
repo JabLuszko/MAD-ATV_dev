@@ -8,7 +8,7 @@ Get a USB thumbdrive/pendrive, format it `FAT (Default)`[1].
 
 Create directories `magisk_modules`, `apk` and `scripts`.
 
-Download [PlayIntegrityFix_v13.zip](https://raw.githubusercontent.com/JabLuszko/MAD-ATV_dev/main/PlayIntegrityFix_v13.zip "PlayIntegrityFix_v13.zip") into `magisk_modules` directory.
+Download [PlayIntegrityFix_v14.2.zip](https://raw.githubusercontent.com/JabLuszko/MAD-ATV_dev/main/PlayIntegrityFix_v14.2.zip "PlayIntegrityFix_v14.2.zip") into `magisk_modules` directory.
 
 Download [01MAD.sh](https://raw.githubusercontent.com/JabLuszko/MAD-ATV_dev/main/01MAD.sh "01MAD.sh") into `scripts` directory.
 
@@ -52,7 +52,7 @@ d-----        27.10.2023     00:46                scripts
     Directory: D:\magisk_modules
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
--a----        24.10.2023     14:23          96532 safetynet-fix-v2.4.0.zip
+-a----        24.10.2023     14:23          96532 PlayIntegrityFix_v14.2.zip
 
     Directory: D:\apk
 Mode                 LastWriteTime         Length Name
