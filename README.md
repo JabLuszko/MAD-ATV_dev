@@ -1,6 +1,6 @@
 # MAD-ATV_dev
 > [!CAUTION]
-> Do NOT use 2K/4K/8K screens/monitors - it will not show anything. Find older 1080p monitor, check if you can fake/downgrade resolution on yours 4K TV. If you can't and you have none you can still use [scrcpy](https://github.com/Genymobile/scrcpy "https://github.com/Genymobile/scrcpy").
+> Do NOT use 2K/4K/8K screens/monitors - it will not show anything after initial PoGoROM logo. Find older 1080p monitor, check if you can fake/downgrade resolution on yours 4K TV. If you can't and you have none you can still use [scrcpy](https://github.com/Genymobile/scrcpy "https://github.com/Genymobile/scrcpy") but as this is software it's funky/Android dependable.
 
 > [!WARNING]
 > Do not use Notepad, do not open those text/sh/cfg/ini files, do not copy-paste them to Wordpad, etc. 
