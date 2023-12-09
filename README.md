@@ -18,6 +18,8 @@ Optionally! Download [PogoDroid_async.apk](https://www.maddev.eu/apk/PogoDroid_a
 
 
 Flash [delay_PoGoRom v1.5 A9 x64 S905W ADBUSB](https://github.com/JabLuszko/MAD-ATV_dev/releases/tag/delay) like normally via USB Burning Tool (do not use any extra scripts/configurations/csv's from that ATVROM) and before first boot put the USB thumbdrive/pendrive into the *other* USB PORT.
+> [!TIP]
+> If you can't open ZIP archives or they seems to error out please check the provided MD5SUMS and if it's matches then file was downloaded properly, your system archiver program can't handle that - install `7z` or `‎The Unarchiver` for MacOS. If checksums do not match redownload
 
 After like 3 restarts (30 minutes or so?) you should have new device pending in `Auto-Config` - click the IP, select what already existing device you are updating and Auto-Config should take care of rest.
 
