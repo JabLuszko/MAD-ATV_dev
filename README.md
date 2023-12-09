@@ -8,7 +8,7 @@ Get a USB thumbdrive/pendrive, format it `FAT (Default)`[1].
 
 Create directories `magisk_modules`, `apk` and `scripts`.
 
-Download [PlayIntegrityFix_v14.2.zip](https://raw.githubusercontent.com/JabLuszko/MAD-ATV_dev/main/PlayIntegrityFix_v14.2.zip "PlayIntegrityFix_v14.2.zip") into `magisk_modules` directory.
+Download [PlayIntegrityFix_v14.2.zip](https://raw.githubusercontent.com/JabLuszko/MAD-ATV_dev/main/PlayIntegrityFix_v14.2.zip "PlayIntegrityFix_v14.2.zip") into `magisk_modules` directory, do not unpack it - whole zip.
 
 Download [01MAD.sh](https://raw.githubusercontent.com/JabLuszko/MAD-ATV_dev/main/01MAD.sh "01MAD.sh") into `scripts` directory.
 
