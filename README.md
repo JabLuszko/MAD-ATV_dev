@@ -16,7 +16,7 @@ Download [01MAD.sh](https://raw.githubusercontent.com/JabLuszko/MAD-ATV_dev/main
 
 Download `mad_autoconf.txt` from MADMin -> System -> Auto-Config and put it root/main/not-in-directory.
 
-Optionally! Download [PogoDroid_async.apk](https://www.maddev.eu/apk/PogoDroid_async.apk "PogoDroid_async.apk") and supported/the one you have in Wizard [POGO (not Ares/Samsung and not Split) arm64-v8a apk](https://www.apkmirror.com/apk/niantic-inc/pokemon-go/ "POGO") into `apk` directory[2].
+Optionally! Download [PogoDroid_async.apk](https://www.maddev.eu/apk/PogoDroid_async.apk "PogoDroid_async.apk") and supported/the one you have in Wizard [POGO (not Ares/Samsung and not Split) arm64-v8a apk](https://www.apkmirror.com/apk/niantic-inc/pokemon-go/ "POGO") into `apk` directory. Do *NOT* put RGC here - it will be automagically downloaded from MAD Wizard/Auto-Config.
 
 
 Flash [delay_PoGoRom v1.5 A9 x64 S905W ADBUSB](https://github.com/JabLuszko/MAD-ATV_dev/releases/tag/delay) like normally via USB Burning Tool (do not use any extra scripts/configurations/csv's from that ATVROM) and before first boot put the USB thumbdrive/pendrive into the *other* USB PORT.
@@ -38,8 +38,6 @@ I don't think many people left with Google Accounts, but if anyone up for it cou
 
 
 [1] - other filesystems most likely works too, but not tested, just don't go something crazy like exFAT or btrfs.
-
-[2] - RGC need systemize, was too lazy to change that for first iteration so RGC will be downloaded from MAD/Auto-Config.
 
 
 Directory overview:
