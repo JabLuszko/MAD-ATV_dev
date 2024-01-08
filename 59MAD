@@ -4,7 +4,7 @@ uver="9.0.2"
 #This is for pingreboot version
 pver="2.0"
 # mad rom version
-madver="0.9.4"
+madver="0.9.5"
 
 # Last file created by POGOROM so we don't interfere and run too early
 last_pogorom_file="/sdcard/.curlrc"
@@ -179,6 +179,16 @@ else
 fi
 }
 
+firefox_ptc_access(){
+firefox_configfile="/data/data/org.mozilla.firefox/databases/login_exceptions"
+if [ -f "$firefox_configfile" ]; then
+    rule_count=$(sqlite3 "$firefox_configfile" 'SELECT count(1) FROM `logins_exceptions` WHERE `origin`="https://access.pokemon.com"')
+    if [[ "$rule_count" == "0" ]]; then
+        sqlite3 "$firefox_configfile" 'INSERT INTO `logins_exceptions`(`origin`) VALUES("https://access.pokemon.com")'
+    fi
+fi
+}
+
 
 
 ################ start of execution
@@ -233,6 +243,8 @@ fi
 mount -o remount,rw /
 
 settings put global policy_control immersive.full=com.nianticlabs.pokemongo
+# Force Firefox to stop trying to save login/password for access.pokemon.com
+firefox_ptc_access
 # Disable blue LED on supported A9 devices
 [[ -f /sdcard/disableblueled ]] && echo 0 > /sys/class/leds/sys_led/brightness
 # Disable system animations aka change time to 0.0
