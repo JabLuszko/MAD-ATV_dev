@@ -1,10 +1,10 @@
 #!/system/bin/sh
 #This is for update_mad version
-uver="9.0.2"
+uver="9.0.3"
 #This is for pingreboot version
 pver="2.0"
 # mad rom version
-madver="0.9.5"
+madver="0.9.6"
 
 # Last file created by POGOROM so we don't interfere and run too early
 last_pogorom_file="/sdcard/.curlrc"
