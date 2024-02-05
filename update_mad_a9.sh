@@ -1,6 +1,6 @@
 #!/system/bin/sh
 # update mad
-# version 9.0.2
+# version 9.0.3
 # created by GhostTalker, hijaked by krz
 #
 # adb connect %1:5555
@@ -61,8 +61,12 @@ log "Done downloading of PogoDroid from maddev.eu"
 echo "Install APK PogoDroid"
 log "Trying to install PogoDroid from maddev.eu"
 /system/bin/pm install -r /sdcard/Download/PogoDroid.apk
-log "Done installing PogoDroid from maddev.eu"
-reboot=1
+if [ $? -eq 0 ]; then 
+ log "Done installing PogoDroid from maddev.eu"
+ reboot=1 
+else 
+ log "Couldn't install PogoDroid from maddev.eu"
+fi
 }
 
 update_rgc(){
@@ -78,8 +82,12 @@ log "Done downloading of RGC from GitHub"
 echo "Install APK RGC"
 log "Trying to install RGC from GitHub"
 /system/bin/pm install -r /sdcard/Download/RemoteGpsController.apk
-log "Done installing RGC from GitHub"
-reboot=1
+if [ $? -eq 0 ]; then
+  log "Done installing RGC from GitHub"
+  reboot=1
+else 
+  log "Couldn't install RGC from GitHub"
+fi  
 }
 
 get_pd_user(){
@@ -163,8 +171,12 @@ if checkupdate "$newver" "$installedver" ;then
  done
  log "Done downloading of PD from Wizard"
  /system/bin/pm install -r /sdcard/Download/PogoDroid.apk
- log "Done installing of PD from Wizard"
- reboot=1
+ if [ $? -eq 0 ]; then
+  log "Done installing of PD from Wizard"
+  reboot=1
+ else
+  log "Couldn't install PD from Wizard"
+ fi
 fi
 }
 
@@ -196,8 +208,13 @@ case "$(curl -I -s -k -L $(get_pd_user) -H "origin: $origin" "$pserver/mad_apk/p
        for a in * ;do
         pm install-write -S $(stat -c %s $a) $session $a $a
        done
-       pm install-commit $session 
-       log "Done installing unzipped POGO split from Wizard")
+       pm install-commit $session
+       if [ $? -eq 0 ]; then
+        log "Done installing unzipped POGO split from Wizard")
+        reboot=1
+       else
+        log "Couldn't install unzipped POGO split from Wizard")
+       fi
  ;;
  *vnd.android.package-archive*)
        log "Trying to download POGO from Wizard, apk file"
@@ -209,7 +226,12 @@ case "$(curl -I -s -k -L $(get_pd_user) -H "origin: $origin" "$pserver/mad_apk/p
        log "Downloaded apk POGO from Wizard"
        echo "Install APK PokemonGo"
        /system/bin/pm install -r /sdcard/Download/pogo/pogo.apk
-       log "Done installing APK POGO from Wizard"
+       if [ $? -eq 0 ]; then
+        log "Done installing APK POGO from Wizard"
+        reboot=1
+       else
+        log "Couldn't install APK POGO from Wizard"
+       fi
  ;;
  *)    echo "unknown format pogo detected from madmin wizard"
        log "unknown format pogo detected from madmin wizard"
@@ -217,7 +239,6 @@ case "$(curl -I -s -k -L $(get_pd_user) -H "origin: $origin" "$pserver/mad_apk/p
        return 1
  ;;
 esac
-reboot=1
 }
 
 update_init(){
