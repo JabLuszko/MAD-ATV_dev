@@ -1,6 +1,6 @@
 #!/system/bin/sh
 # update mad
-# version 9.0.3
+# version 9.0.4
 # created by GhostTalker, hijaked by krz
 #
 # adb connect %1:5555
@@ -210,10 +210,10 @@ case "$(curl -I -s -k -L $(get_pd_user) -H "origin: $origin" "$pserver/mad_apk/p
        done
        pm install-commit $session
        if [ $? -eq 0 ]; then
-        log "Done installing unzipped POGO split from Wizard")
+        log "Done installing unzipped POGO split from Wizard"
         reboot=1
        else
-        log "Couldn't install unzipped POGO split from Wizard")
+        log "Couldn't install unzipped POGO split from Wizard"
        fi
  ;;
  *vnd.android.package-archive*)
