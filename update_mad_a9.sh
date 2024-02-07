@@ -215,6 +215,7 @@ case "$(curl -I -s -k -L $(get_pd_user) -H "origin: $origin" "$pserver/mad_apk/p
        else
         log "Couldn't install unzipped POGO split from Wizard"
        fi
+       )
  ;;
  *vnd.android.package-archive*)
        log "Trying to download POGO from Wizard, apk file"
