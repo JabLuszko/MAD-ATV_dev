@@ -1,6 +1,6 @@
 #!/system/bin/sh
 # update mad
-# version 9.0.5
+# version 9.0.6
 # created by GhostTalker, hijaked by krz
 #
 # adb connect %1:5555
@@ -140,6 +140,12 @@ if checkupdate "$newver" "$installedver" ;then
  if [[ "$installedver" ]] ;then
   log "RGC already installed, just updating Wizard version via pm install"
   /system/bin/pm install -r /sdcard/Download/RemoteGpsController.apk
+  if [ $? -eq 0 ]; then
+   log "Done installing RGC from Wizard"
+   reboot=1
+  else
+   log "Couldn't install RGC from Wizard"
+  fi
  else
   log "RGC was never installed - moving it to /system/priv-app"
   # let's make sure / is mounted with rw rights, we don't bother with remount_ro as it should reboot
@@ -147,8 +153,8 @@ if checkupdate "$newver" "$installedver" ;then
   mv /sdcard/Download/RemoteGpsController.apk /system/priv-app/RemoteGpsController.apk
   /system/bin/chmod 644 /system/priv-app/RemoteGpsController.apk
   /system/bin/chown root:root /system/priv-app/RemoteGpsController.apk
+  reboot=1
  fi
- reboot=1
 fi
 }
 
